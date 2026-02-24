@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Feature Toggle Component (React)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A simple React component demonstrating **conditional rendering** based on props. This project was built as part of an assignment to understand how React components can enable or disable features without using state.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Overview
 
-### `npm start`
+The `FeatureToggle` component accepts two primary props:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+* **`isEnabled`**: A boolean that determines whether the feature is active.
+* **`featureName`**: The name of the feature being toggled.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Behavior Logic
+* **If `isEnabled` is true**: The component displays the feature name.
+* **If `isEnabled` is false**: It displays: `Feature [featureName] is disabled`.
 
-### `npm test`
+This pattern is useful for controlling access to experimental features, beta flags, or UI elements that should only appear under specific conditions.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📂 Project Structure
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```text
+feature-toggle-demo/
+├── src/
+│   ├── App.js
+│   ├── FeatureToggle.js
+│   ├── FeatureToggle.test.js
+│   └── index.js
+├── package.json
+└── README.md
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🛠 FeatureToggle Component
 
-### `npm run eject`
+The component uses simple conditional rendering based on props to keep the logic reusable and predictable:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Conditional States
+* **When `isEnabled` is true**: Show the feature name.
+* **When `isEnabled` is false**: Show a standard disabled message.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+---
 
-## Learn More
+## 🧪 Testing
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This project uses **Jest** and **React Testing Library**.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### How to Run Tests
 
-### Code Splitting
+To execute the test suite, follow these steps in your terminal:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+1. **Navigate to the project folder:**
+   ```bash
+   cd feature-toggle-demo
+   ```
+2. **Launch the test runner:**
+   ```bash
+   npm test
+   ```
 
-### Analyzing the Bundle Size
+This will launch **Jest** in watch mode and run all included test suites.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Included Test Cases
 
-### Making a Progressive Web App
+The test suite covers 6 specific scenarios to ensure robust behavior:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+#### Normal Cases
+* **Renders feature name** when enabled.
+* **Renders disabled message** when disabled.
+* **Renders correct feature name** for another enabled feature.
 
-### Advanced Configuration
+#### Edge Cases
+* **Handles empty `featureName`** string.
+* **Handles `undefined` `featureName`**.
+* **Handles non-boolean truthy `isEnabled`** values.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+> **Result:** All tests pass successfully. ✅
 
-### Deployment
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## 🚦 Running the App
 
-### `npm run build` fails to minify
+Follow these steps to get the development server running:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Step 1: Install Dependencies
+Run the following command to install required packages:
+```bash
+npm install
+```
+
+### Step 2: Start the Server
+Start the development server with:
+```bash
+npm start
+```
+
+### Step 3: View in Browser
+The app will automatically open. If it does not, navigate to:
+* [http://localhost:3000](http://localhost:3000)
