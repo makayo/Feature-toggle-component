@@ -1,23 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import FeatureToggle from "./FeatureToggle";
+import FeatureToggleClass from "./FeatureToggleClass";
 
 function App() {
+  // Flip this to switch versions
+  const useClassVersion = true;
+
+  const ToggleComponent = useClassVersion
+    ? FeatureToggleClass
+    : FeatureToggle;
+
+  const versionLabel = useClassVersion
+    ? "🔥 Using the CLASS-based FeatureToggle"
+    : "✨ Using the FUNCTION-based FeatureToggle";
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ fontFamily: "Arial", padding: "20px" }}>
+      <h2>{versionLabel}</h2>
+
+      <ToggleComponent isEnabled={true}>
+        <div style={{ marginTop: "10px", padding: "10px", border: "1px solid #ccc" }}>
+          AD311 WK8 Toggle Components.
+        </div>
+      </ToggleComponent>
     </div>
   );
 }

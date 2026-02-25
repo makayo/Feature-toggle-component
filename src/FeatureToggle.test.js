@@ -7,45 +7,61 @@ describe("FeatureToggle Component", () => {
     // NORMAL TEST CASES
     // -------------------------
 
-    test("renders featureName when isEnabled is true", () => {
-        render(<FeatureToggle isEnabled={true} featureName="Dark Mode" />);
-        expect(screen.getByText("Dark Mode")).toBeInTheDocument();
+    test("renders children when isEnabled is true", () => {
+        render(
+            <FeatureToggle isEnabled={true}>
+                <div>Visible Content</div>
+            </FeatureToggle>
+        );
+        expect(screen.getByText("Visible Content")).toBeInTheDocument();
     });
 
-    test("renders disabled message when isEnabled is false", () => {
-        render(<FeatureToggle isEnabled={false} featureName="Chat Widget" />);
-        expect(
-            screen.getByText("Feature Chat Widget is disabled")
-        ).toBeInTheDocument();
+    test("does not render children when isEnabled is false", () => {
+        render(
+            <FeatureToggle isEnabled={false}>
+                <div>Hidden Content</div>
+            </FeatureToggle>
+        );
+        expect(screen.queryByText("Hidden Content")).toBeNull();
     });
 
-    test("renders correct featureName for another enabled feature", () => {
-        render(<FeatureToggle isEnabled={true} featureName="Search Bar" />);
-        expect(screen.getByText("Search Bar")).toBeInTheDocument();
+    test("renders multiple children when enabled", () => {
+        render(
+            <FeatureToggle isEnabled={true}>
+                <p>Line One</p>
+                <p>Line Two</p>
+            </FeatureToggle>
+        );
+        expect(screen.getByText("Line One")).toBeInTheDocument();
+        expect(screen.getByText("Line Two")).toBeInTheDocument();
     });
 
     // -------------------------
     // EDGE TEST CASES
     // -------------------------
 
-    test("handles empty featureName string", () => {
-        render(<FeatureToggle isEnabled={false} featureName="" />);
-        expect(
-            screen.getByText("Feature is disabled")
-        ).toBeInTheDocument();
+    test("renders nothing when children are undefined", () => {
+        render(<FeatureToggle isEnabled={true} />);
+        // Should not crash, but also nothing to find
+        expect(screen.queryByText(/./)).toBeNull();
     });
 
-
-    test("handles undefined featureName", () => {
-        render(<FeatureToggle isEnabled={false} />);
-        expect(
-            screen.getByText("Feature undefined is disabled")
-        ).toBeInTheDocument();
+    test("treats truthy non-boolean isEnabled as enabled", () => {
+        render(
+            <FeatureToggle isEnabled={"yes"}>
+                <div>Truthy Enabled</div>
+            </FeatureToggle>
+        );
+        expect(screen.getByText("Truthy Enabled")).toBeInTheDocument();
     });
 
-    test("handles non-boolean isEnabled (truthy value)", () => {
-        render(<FeatureToggle isEnabled={"yes"} featureName="Beta Mode" />);
-        expect(screen.getByText("Beta Mode")).toBeInTheDocument();
+    test("treats falsy non-boolean isEnabled as disabled", () => {
+        render(
+            <FeatureToggle isEnabled={0}>
+                <div>Falsy Disabled</div>
+            </FeatureToggle>
+        );
+        expect(screen.queryByText("Falsy Disabled")).toBeNull();
     });
 
 });

@@ -1,13 +1,9 @@
-// src/FeatureToggle.js
+function FeatureToggle({ isEnabled, children }) {
+    if (!isEnabled) {
+        return null;
+    }
 
-function FeatureToggle({ isEnabled, featureName }) {
-    return (
-        <div>
-            {isEnabled
-                ? featureName
-                : `Feature ${featureName} is disabled`}
-        </div>
-    );
+    return <>{children}</>;
 }
 
 export default FeatureToggle;

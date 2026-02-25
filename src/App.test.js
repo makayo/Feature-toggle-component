@@ -1,8 +1,12 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
 
-test('renders learn react link', () => {
+test("renders the active toggle version label", () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText(/Using the/i)).toBeInTheDocument();
+});
+
+test("renders the toggled content", () => {
+  render(<App />);
+  expect(screen.getByText(/Toggle Components/i)).toBeInTheDocument();
 });
