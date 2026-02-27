@@ -3,12 +3,12 @@ import FeatureToggleClass from "./FeatureToggleClass";
 
 function App() {
   // Flip this to switch versions
+  //const useClassVersion = false;
   const useClassVersion = true;
 
   const ToggleComponent = useClassVersion
     ? FeatureToggleClass
     : FeatureToggle;
-
   const versionLabel = useClassVersion
     ? "🔥 Using the CLASS-based FeatureToggle"
     : "✨ Using the FUNCTION-based FeatureToggle";
@@ -27,3 +27,4 @@ function App() {
 }
 
 export default App;
+
