@@ -6,34 +6,20 @@ A simple React component demonstrating **conditional rendering** based on props.
 
 ## 🚀 Overview
 
-# Feature Toggle Demo (React)
+The `FeatureToggle` component accepts two primary props:
 
-A lightweight React project demonstrating two different implementations of a feature toggle: one using a **functional component** and one using a **class-based component**. This assignment explores how React components can enable or disable UI features based on props — without relying on state or external libraries.
+* **`isEnabled`**: A boolean that determines whether the feature is active.
+* **`featureName`**: The name of the feature being toggled.
 
-### Class-Based FeatureToggleClass
+### Behavior Logic
+* **If `isEnabled` is true**: The component displays the feature name.
+* **If `isEnabled` is false**: It displays: `Feature [featureName] is disabled`.
 
-A React class component that performs the same logic using the `render()` method. It evaluates the `isEnabled` prop and either displays its children or returns `null`.
-
-### Core Component API
-
-Both components accept the following props:
-
-- **`isEnabled`**: Determines whether the wrapped content should be shown.
-- **`children`**: The React elements to be conditionally rendered.
-
----
-
-## 🔀 Switching Between Versions
-
-The main application (`App.js`) includes a boolean flag that determines which toggle implementation is used. The UI also displays a message indicating whether the functional or class-based version is active, making it easy to confirm which component is currently rendering:
-
-- 🔥 **Using the CLASS-based FeatureToggle**
-- ✨ **Using the FUNCTIONAL FeatureToggle**
+This pattern is useful for controlling access to experimental features, beta flags, or UI elements that should only appear under specific conditions.
 
 ---
 
 ## 📂 Project Structure
-
 ```text
 feature-toggle-demo/
 ├── src/
@@ -95,13 +81,8 @@ npm install
 
 ### Step 2: Start the Development Server
 npm start
-
-### Step 3: Open in Browser
-Visit: http://localhost:3000
-
----
-
-## 📘 Summary
-
-This project demonstrates a reusable feature toggle, implemented in two ways: Functional and Class-based.It demonstrates architectural parity, dynamic switching between implementations in a live environment, and validation through behavior with a comprehensive test suite.
 ```
+
+### Step 3: View in Browser
+The app will automatically open. If it does not, navigate to:
+* [http://localhost:3000](http://localhost:3000)
