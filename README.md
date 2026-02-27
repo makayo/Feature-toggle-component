@@ -1,25 +1,31 @@
 # Feature Toggle Component (React)
 
-A simple React component demonstrating **conditional rendering** based on props. This project was built as part of an assignment to understand how React components can enable or disable features without using state.
+A simple React component demonstrating **conditional rendering** based on props. This project was built to understand how React components can enable or disable features without using state.
 
 ---
 
 ## 🚀 Overview
 
-The `FeatureToggle` component accepts two primary props:
+The `FeatureToggle` component accepts two props:
 
-* **`isEnabled`**: A boolean that determines whether the feature is active.
-* **`featureName`**: The name of the feature being toggled.
+- **`isEnabled`** — determines whether the feature’s content should be shown
+- **`children`** — the React elements that will be conditionally rendered
 
-### Behavior Logic
-* **If `isEnabled` is true**: The component displays the feature name.
-* **If `isEnabled` is false**: It displays: `Feature [featureName] is disabled`.
+This component is used to toggle UI content while demonstrating two different React component styles: a functional component and a class-based component.
 
-This pattern is useful for controlling access to experimental features, beta flags, or UI elements that should only appear under specific conditions.
+---
+
+## 🔧 Behavior Logic
+
+- **If `isEnabled` is true**: the component renders its children.
+- **If `isEnabled` is false**: the component returns `null` (renders nothing).
+
+Both the functional and class-based versions of the component follow this same behavior.
 
 ---
 
 ## 📂 Project Structure
+
 ```text
 feature-toggle-demo/
 ├── src/
@@ -84,5 +90,7 @@ npm start
 ```
 
 ### Step 3: View in Browser
+
 The app will automatically open. If it does not, navigate to:
-* [http://localhost:3000](http://localhost:3000)
+
+- [http://localhost:3000](http://localhost:3000)
